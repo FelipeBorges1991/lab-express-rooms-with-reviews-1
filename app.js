@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 
 const PORT = 4000;
@@ -15,6 +17,11 @@ app.use(express.json());
 const roomsRouter = require("./routes/room.routes");
 app.use("/", roomsRouter);
 
+const reviewRouter = require("./routes/review.routes");
+app.use("/", reviewRouter);
+
+const userRouter = require("./routes/user.routes");
+app.use("/", userRouter);
 
 // Inicia o servidor para escutar requisições HTTP na porta 4000
 app.listen(PORT, () => console.log(`Server up and running at port ${PORT}`));

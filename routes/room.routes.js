@@ -39,6 +39,20 @@ router.get("/rooms", async (req, res) => {
   }
 });
 
+router.get("/rooms/:id", async (req, res) => {
+  try {
+    const result = await RoomModel.findOne({ _id: req.params.id }).populate(
+      "reviews"
+    );
+
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error(err);
+    // O status 500 signifca Internal Server Error
+    return res.status(500).json({ msg: JSON.stringify(err) });
+  }
+});
+
 //UPDATE
 router.put("/rooms/:id", async (req, res) => {
   try {
